@@ -52,7 +52,7 @@ export default function Game() {
   return (
     <>
       <div className="guess-results">
-        <GuessResults guesses={guesses} />
+        <GuessResults guesses={guesses} answer={answer} />
       </div>
       <GuessForm onSubmit={addGuess} />
 
