@@ -24,13 +24,13 @@ export default function Game() {
 
   return (
     <>
-      <ul>
+      <div className="guess-results">
         {guesses.map((guess) => (
-          <li key={guess.id}>
-            <p>{guess.value}</p>
-          </li>
+          <p key={guess.id} className="guess">
+            {guess.value}
+          </p>
         ))}
-      </ul>
+      </div>
       <GuessForm onSubmit={addGuess} />
     </>
   );
