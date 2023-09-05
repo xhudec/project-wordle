@@ -1,15 +1,37 @@
-import React from 'react';
+import React from "react";
 
-import { sample } from '../../utils';
-import { WORDS } from '../../data';
+import { sample } from "../../utils";
+import { WORDS } from "../../data";
+import GuessForm from "../GuessForm";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
 console.info({ answer });
 
-function Game() {
-  return <>Put a game here!</>;
-}
+export default function Game() {
+  const [guesses, setGuesses] = React.useState([]);
 
-export default Game;
+  function addGuess(guess) {
+    setGuesses((state) => [
+      ...state,
+      {
+        id: crypto.randomUUID(),
+        value: guess.toUpperCase(),
+      },
+    ]);
+  }
+
+  return (
+    <>
+      <ul>
+        {guesses.map((guess) => (
+          <li key={guess.id}>
+            <p>{guess.value}</p>
+          </li>
+        ))}
+      </ul>
+      <GuessForm onSubmit={addGuess} />
+    </>
+  );
+}
