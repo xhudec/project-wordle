@@ -7,6 +7,7 @@ export default function GuessForm({ onSubmit }) {
     event.preventDefault();
 
     onSubmit(guess);
+    setGuess('')
   };
 
   return (
