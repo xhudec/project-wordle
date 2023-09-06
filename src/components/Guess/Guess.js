@@ -1,21 +1,14 @@
 import React from "react";
 import { range } from "../../utils";
-import { checkGuess } from "../../game-helpers";
 
 const EMPTY_GUESS_ARRAY = range(0, 5, 1);
 
-export default function Guess({ guess, answer }) {
-  const letterStatus = React.useMemo(() => {
-    if (!guess) {
-      return EMPTY_GUESS_ARRAY;
-    }
-
-    return checkGuess(guess, answer);
-  });
+export default function Guess({ guess }) {
+  const letterArray = guess.letterStatus.length === 5 ? guess.letterStatus : EMPTY_GUESS_ARRAY
 
   return (
     <p className="guess">
-      {letterStatus.map((letterStatus, index) => (
+      {letterArray.map((letterStatus, index) => (
         <span key={index} className={`cell ${letterStatus?.status ?? ""}`.trim()}>
           {letterStatus?.letter ?? ""}
         </span>

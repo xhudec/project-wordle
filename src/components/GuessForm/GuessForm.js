@@ -1,13 +1,13 @@
 import React from "react";
 
-export default function GuessForm({ onSubmit }) {
+export default function GuessForm({ disabled, onSubmit }) {
   const [guess, setGuess] = React.useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     onSubmit(guess);
-    setGuess('')
+    setGuess("");
   };
 
   return (
@@ -18,6 +18,7 @@ export default function GuessForm({ onSubmit }) {
         type="text"
         pattern="\w{5}"
         title="Must be 5 letters"
+        disabled={disabled}
         value={guess}
         onChange={(event) => {
           setGuess(event.target.value);
